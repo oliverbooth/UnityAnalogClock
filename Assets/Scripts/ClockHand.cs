@@ -54,26 +54,35 @@ public class ClockHand : MonoBehaviour
     /// <param name="dateTime">The <see cref="DateTime"/> instance to use.</param>
     private void SetValue(DateTime dateTime)
     {
-        float y = 0;
+        float v           = 0,
+              max         = 60.0f,
+              hour        = Convert.ToInt32(dateTime.ToString("hh")),
+              minute      = dateTime.Minute,
+              second      = dateTime.Second,
+              millisecond = dateTime.Millisecond;
+
+        if (this.Movement == HandMovement.Smooth)
+        {
+            second += millisecond / 1000.0f;
+            minute += second      / 60.0f;
+            hour   += minute      / 60.0f;
+        }
 
         switch (this.Type)
         {
             case HandType.Second:
-                y = dateTime.Second / 60.0f * 360.0f;
+                v = second;
                 break;
             case HandType.Minute:
-                y = dateTime.Minute / 60.0f * 360.0f;
+                v = minute;
                 break;
             case HandType.Hour:
-                int hour = Convert.ToInt32(dateTime.ToString("hh"));
-                y = hour / 12.0f * 360.0f;
+                v   = hour;
+                max = 12.0f;
                 break;
         }
 
-        Vector3 euler = this.transform.localEulerAngles;
-        euler.y = y;
-
-        this.transform.localEulerAngles = euler;
+        this.transform.localEulerAngles = new Vector3(0.0f, v / max * 360.0f, 0.0f);
     }
 
     #endregion
