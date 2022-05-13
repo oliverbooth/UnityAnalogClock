@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,11 +7,8 @@ using UnityEngine.Serialization;
 /// </summary>
 public class ClockHand : MonoBehaviour
 {
-    [SerializeField, FormerlySerializedAs("Type")]
-    private HandType _type = HandType.Second;
-
-    [SerializeField, FormerlySerializedAs("Movement")]
-    private HandMovement _movement = HandMovement.Smooth;
+    [SerializeField, FormerlySerializedAs("Type")] private HandType _type = HandType.Second;
+    [SerializeField, FormerlySerializedAs("Movement")] private HandMovement _movement = HandMovement.Smooth;
 
     private void Start()
     {
@@ -30,18 +27,18 @@ public class ClockHand : MonoBehaviour
 
     private void SetValue(DateTime dateTime)
     {
-        float v           = 0,
-              max         = 60.0f,
-              hour        = Convert.ToInt32(dateTime.ToString("hh")),
-              minute      = dateTime.Minute,
-              second      = dateTime.Second,
-              millisecond = dateTime.Millisecond;
+        float v = 0,
+            max = 60.0f,
+            hour = Convert.ToInt32(dateTime.ToString("hh")),
+            minute = dateTime.Minute,
+            second = dateTime.Second,
+            millisecond = dateTime.Millisecond;
 
         if (_movement == HandMovement.Smooth)
         {
             second += millisecond / 1000.0f;
-            minute += second      / 60.0f;
-            hour   += minute      / 60.0f;
+            minute += second / 60.0f;
+            hour += minute / 60.0f;
         }
 
         switch (_type)
@@ -53,7 +50,7 @@ public class ClockHand : MonoBehaviour
                 v = minute;
                 break;
             case HandType.Hour:
-                v   = hour;
+                v = hour;
                 max = 12.0f;
                 break;
         }
