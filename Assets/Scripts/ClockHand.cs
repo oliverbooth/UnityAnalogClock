@@ -1,20 +1,17 @@
-﻿using System;
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Represents a behavior which controls a clock hand.
 /// </summary>
 public class ClockHand : MonoBehaviour
 {
-    /// <summary>
-    /// The hand type.
-    /// </summary>
-    public HandType Type = HandType.Second;
+    [SerializeField, FormerlySerializedAs("Type")]
+    private HandType _type = HandType.Second;
 
-    /// <summary>
-    /// The movement type.
-    /// </summary>
-    public HandMovement Movement = HandMovement.Smooth;
+    [SerializeField, FormerlySerializedAs("Movement")]
+    private HandMovement _movement = HandMovement.Smooth;
 
     /// <summary>
     /// Called when the object is enabled.
@@ -51,14 +48,14 @@ public class ClockHand : MonoBehaviour
               second      = dateTime.Second,
               millisecond = dateTime.Millisecond;
 
-        if (Movement == HandMovement.Smooth)
+        if (_movement == HandMovement.Smooth)
         {
             second += millisecond / 1000.0f;
             minute += second      / 60.0f;
             hour   += minute      / 60.0f;
         }
 
-        switch (Type)
+        switch (_type)
         {
             case HandType.Second:
                 v = second;
