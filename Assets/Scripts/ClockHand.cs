@@ -1,17 +1,11 @@
-﻿#region Using Directives
-
-using System;
+﻿using System;
 using UnityEngine;
-
-#endregion
 
 /// <summary>
 /// Represents a behavior which controls a clock hand.
 /// </summary>
 public class ClockHand : MonoBehaviour
 {
-    #region Fields
-
     /// <summary>
     /// The hand type.
     /// </summary>
@@ -21,10 +15,6 @@ public class ClockHand : MonoBehaviour
     /// The movement type.
     /// </summary>
     public HandMovement Movement = HandMovement.Smooth;
-
-    #endregion
-
-    #region Methods
 
     /// <summary>
     /// Called when the object is enabled.
@@ -84,6 +74,4 @@ public class ClockHand : MonoBehaviour
 
         this.transform.localEulerAngles = new Vector3(0.0f, v / max * 360.0f, 0.0f);
     }
-
-    #endregion
 }
