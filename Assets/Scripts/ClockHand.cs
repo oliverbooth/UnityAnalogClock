@@ -29,7 +29,7 @@ public class ClockHand : MonoBehaviour
     {
         float v = 0,
             max = 60.0f,
-            hour = Convert.ToInt32(dateTime.ToString("hh")),
+            hour = 12 + dateTime.Hour % 12,
             minute = dateTime.Minute,
             second = dateTime.Second,
             millisecond = dateTime.Millisecond;
