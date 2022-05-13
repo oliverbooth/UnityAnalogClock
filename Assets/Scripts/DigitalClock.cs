@@ -12,6 +12,6 @@ public class DigitalClock : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        this.GetComponent<Text>().text = DateTime.Now.ToString("HH:mm:ss");
+        GetComponent<Text>().text = DateTime.Now.ToString("HH:mm:ss");
     }
 }

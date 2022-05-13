@@ -21,7 +21,7 @@ public class ClockHand : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        this.SetValue();
+        SetValue();
     }
 
     /// <summary>
@@ -29,14 +29,14 @@ public class ClockHand : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        this.SetValue();
+        SetValue();
     }
 
     /// <summary>
     /// Sets the clock value.
     /// </summary>
     private void SetValue() =>
-        this.SetValue(DateTime.Now);
+        SetValue(DateTime.Now);
 
     /// <summary>
     /// Sets the clock value.
@@ -51,14 +51,14 @@ public class ClockHand : MonoBehaviour
               second      = dateTime.Second,
               millisecond = dateTime.Millisecond;
 
-        if (this.Movement == HandMovement.Smooth)
+        if (Movement == HandMovement.Smooth)
         {
             second += millisecond / 1000.0f;
             minute += second      / 60.0f;
             hour   += minute      / 60.0f;
         }
 
-        switch (this.Type)
+        switch (Type)
         {
             case HandType.Second:
                 v = second;
@@ -72,6 +72,6 @@ public class ClockHand : MonoBehaviour
                 break;
         }
 
-        this.transform.localEulerAngles = new Vector3(0.0f, v / max * 360.0f, 0.0f);
+        transform.localEulerAngles = new Vector3(0.0f, v / max * 360.0f, 0.0f);
     }
 }
