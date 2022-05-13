@@ -3,15 +3,19 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Represents a behavior which controls the digital clock.
+///     Represents a behavior which controls the digital clock.
 /// </summary>
 public class DigitalClock : MonoBehaviour
 {
-    /// <summary>
-    /// Called once per frame.
-    /// </summary>
+    private Text _text;
+
+    private void Awake()
+    {
+        _text = GetComponent<Text>();
+    }
+
     private void Update()
     {
-        GetComponent<Text>().text = DateTime.Now.ToString("HH:mm:ss");
+        _text.text = DateTime.Now.ToString("HH:mm:ss");
     }
 }
