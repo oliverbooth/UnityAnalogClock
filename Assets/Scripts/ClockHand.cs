@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 /// <summary>
-/// Represents a behavior which controls a clock hand.
+///     Represents a behavior which controls a clock hand.
 /// </summary>
 public class ClockHand : MonoBehaviour
 {
@@ -13,32 +13,21 @@ public class ClockHand : MonoBehaviour
     [SerializeField, FormerlySerializedAs("Movement")]
     private HandMovement _movement = HandMovement.Smooth;
 
-    /// <summary>
-    /// Called when the object is enabled.
-    /// </summary>
     private void Start()
     {
         SetValue();
     }
 
-    /// <summary>
-    /// Called once per frame.
-    /// </summary>
     private void Update()
     {
         SetValue();
     }
 
-    /// <summary>
-    /// Sets the clock value.
-    /// </summary>
-    private void SetValue() =>
+    private void SetValue()
+    {
         SetValue(DateTime.Now);
+    }
 
-    /// <summary>
-    /// Sets the clock value.
-    /// </summary>
-    /// <param name="dateTime">The <see cref="DateTime"/> instance to use.</param>
     private void SetValue(DateTime dateTime)
     {
         float v           = 0,
